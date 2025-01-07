@@ -1,6 +1,6 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import { Roboto } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header/Header";
 
 
 
@@ -21,6 +21,7 @@ export default function RootLayout({ children }) {
       <body
         className={roboto.className}
       >
+        <Header />
         {children}
       </body>
     </html>

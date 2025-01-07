@@ -10,6 +10,13 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: "var(--primary-900)",
+        neutral: "var(--neutral-400)",
+        primaryMedium: "var(--primary-600)",
+        primaryLight: "var(--primary-700)",
+        secondary: "var(--secondary-100)",
+        white: "var(--secondary-00)",
+        primaryExtraLight: "var(--primary-400)"
       },
       fontFamily: {
         roboto: "var(--font-roboto)",
