@@ -11,6 +11,10 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        roboto: "var(--font-roboto)",
+        mono: "var(--font-geist-mono)",
+      },
     },
   },
   plugins: [],
