@@ -37,8 +37,8 @@ const HeaderClient = ({ categories }) => {
     }, [])
     return (
         <>
-            <div className="container mx-auto px-4 py-3">
-                <div className="flex items-center justify-between">
+            <div className="container mx-auto px-4 py-3 ">
+                <div className="flex items-center justify-between md:pl-[52px] md:pr-[52px]">
 
                     <Link href="/">
                         <Image src={Logo} alt='Logo' height={35} className="text-2xl font-bold" />
@@ -93,9 +93,6 @@ const HeaderClient = ({ categories }) => {
                             <Search size={20} />
                         </button>
                     </div>
-
-
-
                     <nav className="hidden md:flex items-center space-x-6">
                         <Link href="/" className="hover:text-primaryExtraLight duration-200 transition-colors">Home</Link>
                         <Link href="/about" className="hover:text-primaryExtraLight duration-200 transition-colors">About Us</Link>
