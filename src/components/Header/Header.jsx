@@ -3,8 +3,8 @@
 import HeaderClient from './HeaderClient'
 
 
-const categories = ['All Categories', 'Electronics', 'Clothing', 'Books']
 
+const categories = ['All Categories', 'Electronics', 'Clothing', 'Books']
 
 export default function Header() {
 
