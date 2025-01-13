@@ -12,28 +12,28 @@ const products = [
     {
         id: 1,
         title: 'lorem ipsum fire tv with alexa voice remote Tv etc.',
-        image: '/placeholder.svg?height=400&width=400',
+        image: '/product1.svg',
         rating: 4,
         priceRange: { min: 39.99, max: 30.65 }
     },
     {
         id: 2,
         title: 'lorem ipsum fire tv with alexa voice remote Tv etc.',
-        image: '/placeholder.svg?height=400&width=400',
+        image: '/product2.svg',
         rating: 5,
         priceRange: { min: 39.99, max: 30.65 }
     },
     {
         id: 3,
         title: 'lorem ipsum fire tv with alexa voice remote Tv etc.',
-        image: '/placeholder.svg?height=400&width=400',
+        image: '/product3.svg',
         rating: 4,
         priceRange: { min: 39.99, max: 30.65 }
     },
     {
         id: 4,
         title: 'lorem ipsum fire tv with alexa voice remote Tv etc.',
-        image: '/placeholder.svg?height=400&width=400',
+        image: '/product4.svg',
         rating: 5,
         priceRange: { min: 39.99, max: 30.65 }
     },
@@ -46,8 +46,8 @@ const ProductsPage = () => {
 
             <div className="bg-gray-50 min-h-screen pb-8">
                 <div className="mb-8 bg-primary py-8 flex items-center justify-center flex-col">
-                    <h1 className="text-2xl font-bold display text-white">Aladdin Best sells</h1>
-                    <p className="text-1 !text-white pt-2">Our most popular products based on sales.</p>
+                    <h1 className="font-bold md:text-[64px] text-[30px] text-white">Aladdin Best sells</h1>
+                    <p className="text-1 text-center !text-white pt-2">Our most popular products based on sales.</p>
                 </div>
                 <div className="container mx-auto px-4">
 

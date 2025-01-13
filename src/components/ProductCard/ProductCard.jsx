@@ -15,7 +15,7 @@ export default function ProductCard({ product }) {
                 />
             </div>
             <div className="p-4">
-                <h3 className="text-sm text-gray-700 font-medium line-clamp-2">
+                <h3 className="text-sm text-3 font-medium line-clamp-2">
                     {product.title}
                 </h3>
                 <div className="mt-2 flex items-center">
@@ -24,7 +24,7 @@ export default function ProductCard({ product }) {
                         ({product.rating})
                     </span>
                 </div>
-                <div className="mt-2 text-sm text-gray-900">
+                <div className="mt-2 text-sm text-3">
                     ${product.priceRange.min.toFixed(2)} - ${product.priceRange.max.toFixed(2)}
                 </div>
             </div>

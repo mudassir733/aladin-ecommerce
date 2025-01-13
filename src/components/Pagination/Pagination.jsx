@@ -11,8 +11,8 @@ export default function Pagination({ currentPage, totalPages }) {
                 <button
                     key={i + 1}
                     className={`px-3 py-1 rounded-md ${currentPage === i + 1
-                            ? 'bg-teal-600 text-white'
-                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        ? 'bg-primary text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                         }`}
                 >
                     {i + 1}

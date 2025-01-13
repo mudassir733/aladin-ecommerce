@@ -2,34 +2,38 @@
 
 import Link from 'next/link'
 import { X } from 'lucide-react'
+import Image from 'next/image'
+
+// assets
+import logo from "@/assets/images/Logo.svg"
 
 export default function MobileNav({ isOpen, onClose, navigationLinks }) {
     return (
         <>
 
             <div
-                className={`fixed inset-y-0 left-0 z-50 w-[280px] bg-white transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'
+                className={`fixed inset-y-0 left-0 z-50 w-[280px] bg-primary transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'
                     }`}
             >
                 <div className="flex flex-col h-full">
 
                     <div className="flex items-center justify-between p-4 border-b">
-                        <span className="text-xl font-bold">Menu</span>
+                        <span className="text-xl font-bold"><Image src={logo} alt='logo' /></span>
                         <button
                             onClick={onClose}
                             className="p-2 hover:bg-gray-100 rounded-full"
                             aria-label="Close menu"
                         >
-                            <X size={24} />
+                            <X size={24} color='#f1f1f1' />
                         </button>
                     </div>
-                    <div className="p-4 bg-gray-50">
+                    <div className="p-4 bg-primaryLight text-white">
                         <div className="flex flex-col">
                             <span className="text-sm">Hello, Kiran</span>
                             <span className="text-sm font-medium">Account for Eshopify...</span>
                         </div>
                     </div>
-                    <div className="flex-1 overflow-y-auto">
+                    <div className="flex-1 overflow-y-auto text-white">
                         <nav className="p-4">
                             <ul className="space-y-2">
                                 {navigationLinks.map((link) => (
@@ -46,7 +50,7 @@ export default function MobileNav({ isOpen, onClose, navigationLinks }) {
                             </ul>
                         </nav>
                     </div>
-                    <div className="p-4 border-t">
+                    <div className="p-4 border-t text-white">
                         <div className="space-y-2">
                             <button className="w-full py-2 px-4 text-left hover:bg-gray-50 rounded-lg">
                                 Change Language

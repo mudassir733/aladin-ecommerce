@@ -10,7 +10,7 @@ const CategoriesClient = ({ categories }) => {
             <div className="flex justify-between items-center mb-6 flex-wrap">
                 <h2 className="heading-1 text-center md:text-left w-full md:w-[450px]">Explore popular category</h2>
                 <Link
-                    href="/categories"
+                    href="/products"
                     className="text-1 mt-5 md:mt-0 hover:text-primary transition-colors duration-200 flex items-center justify-center w-full md:w-[100px]"
                 >
                     See all
