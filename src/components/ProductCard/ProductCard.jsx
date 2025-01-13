@@ -1,5 +1,5 @@
 import Image from 'next/image'
-
+import Link from 'next/link'
 // Components
 import StarRating from '@/components/StarRating/StarRating'
 
@@ -19,13 +19,19 @@ export default function ProductCard({ product }) {
                     {product.title}
                 </h3>
                 <div className="mt-2 flex items-center">
-                    <StarRating rating={product.rating} />
+                    <StarRating rating={product.rating} count={337762} />
                     <span className="ml-2 text-sm text-gray-500">
                         ({product.rating})
                     </span>
                 </div>
-                <div className="mt-2 text-sm text-3">
+                <div className="mt-2 text-sm text-3 flex items-center justify-between">
                     ${product.priceRange.min.toFixed(2)} - ${product.priceRange.max.toFixed(2)}
+
+                    <Link href={`/products/${product.id}`}>
+                        <button className='bg-primaryMedium px-4 py-2 text-white rounded-md'>
+                            View Details
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>

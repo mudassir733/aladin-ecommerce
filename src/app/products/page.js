@@ -6,38 +6,9 @@ import Sidebar from '@/components/SideBar/SideBar'
 import ProductCard from '@/components/ProductCard/ProductCard'
 import Pagination from '@/components/Pagination/Pagination'
 import HeaderSecnd from '@/components/Header_secnd/HeaderSecnd'
+import { products } from '@/app/products/data/products'
 
 
-const products = [
-    {
-        id: 1,
-        title: 'lorem ipsum fire tv with alexa voice remote Tv etc.',
-        image: '/product1.svg',
-        rating: 4,
-        priceRange: { min: 39.99, max: 30.65 }
-    },
-    {
-        id: 2,
-        title: 'lorem ipsum fire tv with alexa voice remote Tv etc.',
-        image: '/product2.svg',
-        rating: 5,
-        priceRange: { min: 39.99, max: 30.65 }
-    },
-    {
-        id: 3,
-        title: 'lorem ipsum fire tv with alexa voice remote Tv etc.',
-        image: '/product3.svg',
-        rating: 4,
-        priceRange: { min: 39.99, max: 30.65 }
-    },
-    {
-        id: 4,
-        title: 'lorem ipsum fire tv with alexa voice remote Tv etc.',
-        image: '/product4.svg',
-        rating: 5,
-        priceRange: { min: 39.99, max: 30.65 }
-    },
-]
 
 const ProductsPage = () => {
     return (
@@ -52,7 +23,7 @@ const ProductsPage = () => {
                 <div className="container mx-auto px-4">
 
 
-                    <div className="flex flex-col md:flex-row gap-8">
+                    <div className="flex flex-col md:flex-row gap-8 px-[20px]">
 
                         <Sidebar />
 

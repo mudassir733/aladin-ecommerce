@@ -7,12 +7,12 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 const categories = [
-    { name: 'Facial-Cleanser', href: '/products/Facial-Cleanser' },
-    { name: 'Pomade', href: '/products/Pomade' },
-    { name: 'Bath-items', href: '/products/Bath-items' },
-    { name: 'Baby-Powder', href: '/products/Baby-Powder' },
-    { name: 'Eye-Liner', href: '/products/Eye-Liner' },
-    { name: 'Lip-Glosses', href: '/products/Lip-Glosses' },
+    { name: 'Facial-Cleanser', href: '/products/category/Facial-Cleanser' },
+    { name: 'Pomade', href: '/products/category/Pomade' },
+    { name: 'Bath-items', href: '/products/category/Bath-items' },
+    { name: 'Baby-Powder', href: '/products/category/Baby-Powder' },
+    { name: 'Eye-Liner', href: '/products/category/Eye-Liner' },
+    { name: 'Lip-Glosses', href: '/products/category/Lip-Glosses' },
 ]
 
 // assets

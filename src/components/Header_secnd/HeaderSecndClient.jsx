@@ -155,7 +155,7 @@ const HeaderSecndClient = ({ categories }) => {
                 </div>
             </div>
             <nav className="hidden md:block bg-[#80deea] text-gray-900">
-                <div className="container mx-auto px-4">
+                <div className="container mx-auto md:px-[30px]">
                     <div className="flex items-center justify-between">
                         <ul className="flex items-center space-x-6">
                             {navigationLinks.map((link) => (
