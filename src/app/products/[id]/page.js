@@ -1,3 +1,7 @@
+import Image from 'next/image'
+import Link from 'next/link'
+
+// Components
 import ProductGallery from '@/features/products/ProductGallery'
 import StarRating from '@/components/StarRating/StarRating'
 import ProductThumbnails from '@/features/products/ProductThumbnail'
@@ -5,6 +9,8 @@ import PurchaseDetails from '@/features/products/PurchaseDetails'
 import { products } from '@/app/products/data/products'
 import HeaderSecnd from '@/components/Header_secnd/HeaderSecnd'
 import Footer from '@/components/Footer/Footer'
+import ProductCard from '@/features/products/ProductCard'
+import Review from '@/features/review/Review'
 
 export default function ProductPage({ params }) {
     const { id } = params;
@@ -26,7 +32,7 @@ export default function ProductPage({ params }) {
     return (
         <>
             <HeaderSecnd />
-            <div className="min-h-screen bg-gray-50 py-8">
+            <div className="min-h-screen bg-gray-50 py-8 ">
                 <div className="container mx-auto md:px-[30px]">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
@@ -53,6 +59,54 @@ export default function ProductPage({ params }) {
                         </div>
                         <div className='lg:col-span-1'>
                             <PurchaseDetails />
+                        </div>
+                    </div>
+                </div>
+
+
+                <div className="bg-gray-50 min-h-screen pb-8 ">
+
+                    <div className="container mx-auto px-4 ">
+
+
+                        <div className="flex flex-col md:flex-row gap-8 px-[20px] border-t-[1px] border-[#dadada] pt-8">
+
+
+
+                            <div className="flex-1">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                                    {products.map((product) => (
+                                        <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300" key={product.id}>
+                                            <div className="relative aspect-square">
+                                                <Image
+                                                    src={product.image}
+                                                    alt={product.title}
+                                                    fill
+                                                    className="object-cover"
+                                                />
+                                            </div>
+                                            <div className="p-4">
+                                                <h3 className="text-sm text-3 font-medium line-clamp-2">
+                                                    {product.title}
+                                                </h3>
+                                                <div className="mt-2 flex items-center">
+                                                    <StarRating rating={product.rating} count={337762} />
+                                                    <span className="ml-2 text-sm text-gray-500">
+                                                        ({product.rating})
+                                                    </span>
+                                                </div>
+                                                <div className="mt-2 text-sm text-3 flex items-center justify-between">
+                                                    ${product.priceRange.min.toFixed(2)} - ${product.priceRange.max.toFixed(2)}
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+
+                            <Review />
                         </div>
                     </div>
                 </div>

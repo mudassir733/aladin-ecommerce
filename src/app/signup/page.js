@@ -4,12 +4,22 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Eye, EyeOff, ArrowRight } from 'lucide-react'
 import Image from "next/image"
+import { useRouter } from 'next/navigation'
+
+
+// store
+import { useSelector, useDispatch } from 'react-redux'
+import { registerUser } from '@/features/auth/authThunk'
 
 // assets
 import Logo from "@/assets/images/Logo.svg"
 
 export default function SignupPage() {
+    const dispatch = useDispatch()
+    const router = useRouter()
+    const { isLoading, isError } = useSelector((state) => state.auth)
     const [showPassword, setShowPassword] = useState(false)
+
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -17,11 +27,23 @@ export default function SignupPage() {
         password: '',
         confirmPassword: ''
     })
-    const [errors, setErrors] = useState({})
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value })
+    }
 
+    const handleFormSubmit = async (event) => {
+        event.preventDefault()
+
+        const registrationResult = await dispatch(registerUser(formData))
+
+        if (registrationResult.error) {
+            return
+        }
+
+        if (registrationResult.payload) {
+            router.push('/')
+        }
     }
 
     return (
@@ -44,7 +66,7 @@ export default function SignupPage() {
 
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="bg-white py-8 px-4 shadow-lg sm:rounded-lg sm:px-10">
-                    <form className="space-y-6" onSubmit={handleSubmit}>
+                    <form className="space-y-6" onSubmit={handleFormSubmit}>
 
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                             <div>
@@ -53,6 +75,8 @@ export default function SignupPage() {
                                 </label>
                                 <input
                                     id="firstName"
+                                    value={formData.firstName}
+                                    onChange={handleChange}
                                     name="firstName"
                                     type="text"
                                     required
@@ -66,6 +90,8 @@ export default function SignupPage() {
                                 </label>
                                 <input
                                     id="lastName"
+                                    value={formData.lastName}
+                                    onChange={handleChange}
                                     name="lastName"
                                     type="text"
                                     required
@@ -81,6 +107,8 @@ export default function SignupPage() {
                             </label>
                             <input
                                 id="email"
+                                value={formData.email}
+                                onChange={handleChange}
                                 name="email"
                                 type="email"
                                 autoComplete="email"
@@ -97,6 +125,8 @@ export default function SignupPage() {
                             <div className="relative mt-1">
                                 <input
                                     id="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
                                     name="password"
                                     type={showPassword ? 'text' : 'password'}
                                     autoComplete="new-password"
@@ -125,6 +155,8 @@ export default function SignupPage() {
                             <div className="relative mt-1">
                                 <input
                                     id="confirmPassword"
+                                    value={formData.confirmPassword}
+                                    onChange={handleChange}
                                     name="confirmPassword"
                                     type={showPassword ? 'text' : 'password'}
                                     autoComplete="new-password"
