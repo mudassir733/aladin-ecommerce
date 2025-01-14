@@ -1,6 +1,7 @@
-import Brands from "@/components/Brands/Brands";
+import Brands from "@/features/Brands";
 import Categories from "@/components/Categories/Categories";
-import Slider from "@/components/Frame/Slider"
+import Footer from "@/components/Footer/Footer";
+import Slider from "@/features/Frame/Slider"
 import Header from "@/components/Header/Header";
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
         <Slider />
         <Categories />
         <Brands />
+        <Footer />
       </>
     </div>
   );

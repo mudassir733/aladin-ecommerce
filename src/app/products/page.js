@@ -3,10 +3,11 @@ import React from 'react'
 
 // Components
 import Sidebar from '@/components/SideBar/SideBar'
-import ProductCard from '@/components/ProductCard/ProductCard'
+import ProductCard from '@/features/products/ProductCard'
 import Pagination from '@/components/Pagination/Pagination'
 import HeaderSecnd from '@/components/Header_secnd/HeaderSecnd'
 import { products } from '@/app/products/data/products'
+import Footer from '@/components/Footer/Footer'
 
 
 
@@ -41,6 +42,8 @@ const ProductsPage = () => {
                     </div>
                 </div>
             </div>
+
+            <Footer />
         </div>
     )
 }

@@ -1,3 +1,4 @@
+import Footer from '@/components/Footer/Footer';
 import HeaderSecnd from '@/components/Header_secnd/HeaderSecnd';
 import Sidebar from '@/components/SideBar/SideBar'
 import React from 'react'
@@ -18,6 +19,8 @@ export default async function Category({ params }) {
                     <div>Category: {slug}</div>
                 </div>
             </div>
+
+            <Footer />
         </>
     )
 }

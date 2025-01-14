@@ -1,9 +1,10 @@
-import ProductGallery from '@/components/ProductsGallery/ProductGallery'
+import ProductGallery from '@/features/products/ProductGallery'
 import StarRating from '@/components/StarRating/StarRating'
-import ProductThumbnails from '@/components/ProductThumbnail/ProductThumbnail'
-import PurchaseDetails from '@/components/PurchaseDetails/PurchaseDetails'
+import ProductThumbnails from '@/features/products/ProductThumbnail'
+import PurchaseDetails from '@/features/products/PurchaseDetails'
 import { products } from '@/app/products/data/products'
 import HeaderSecnd from '@/components/Header_secnd/HeaderSecnd'
+import Footer from '@/components/Footer/Footer'
 
 export default function ProductPage({ params }) {
     const { id } = params;
@@ -56,6 +57,7 @@ export default function ProductPage({ params }) {
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     )
 }
