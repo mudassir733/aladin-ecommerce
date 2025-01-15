@@ -58,7 +58,7 @@ const HeaderSecndClient = ({ categories }) => {
     return (
         <header className="w-full ">
 
-            <div className="bg-[#005b6f] text-white md:pl-[52px] md:pr-[52px]">
+            <div className="bg-[#005b6f] text-white md:px-0 px-[10px]">
                 <div className="container mx-auto px-4 py-3">
                     <div className="flex items-center justify-between gap-4">
 

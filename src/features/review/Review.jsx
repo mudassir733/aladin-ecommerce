@@ -46,7 +46,7 @@ const reviews = [
 
 export default function Review() {
     return (
-        <div className="w-full py-8 px-[70px] ">
+        <div className="w-full py-8 px-[10px] md:px-[70px] ">
             <div className="grid md:grid-cols-2 gap-8 border-t-[1px] border-[#dadada] pt-4">
 
                 <div>

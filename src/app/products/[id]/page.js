@@ -11,6 +11,7 @@ import HeaderSecnd from '@/components/Header_secnd/HeaderSecnd'
 import Footer from '@/components/Footer/Footer'
 import ProductCard from '@/features/products/ProductCard'
 import Review from '@/features/review/Review'
+import ProductDetails from '@/features/products/ProductDetails'
 
 export default function ProductPage({ params }) {
     const { id } = params;
@@ -36,12 +37,12 @@ export default function ProductPage({ params }) {
                 <div className="container mx-auto md:px-[30px]">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-                        <div className="lg:col-span-1">
+                        <div className="lg:col-span-1 md:px-0 px-[10px]">
                             <ProductGallery product={product} />
                         </div>
 
 
-                        <div className="lg:col-span-1">
+                        <div className="lg:col-span-1  md:px-0 px-[10px]">
 
                             <div className="mb-8">
                                 <h1 className="text-sm heading-2 !text-left !leading-8 font-medium line-clamp-2">
@@ -57,21 +58,17 @@ export default function ProductPage({ params }) {
                                 <ProductThumbnails product={product} />
                             </div>
                         </div>
-                        <div className='lg:col-span-1'>
+                        <div className='lg:col-span-1 md:px-0 px-[10px]'>
                             <PurchaseDetails />
                         </div>
                     </div>
                 </div>
 
 
-                <div className="bg-gray-50 min-h-screen pb-8 ">
+                <div className="bg-gray-50 h-full pb-8 border-b-[1px] border-[#dadada] ">
 
-                    <div className="container mx-auto px-4 ">
-
-
-                        <div className="flex flex-col md:flex-row gap-8 px-[20px] border-t-[1px] border-[#dadada] pt-8">
-
-
+                    <div className="container mx-auto px-[10px] md:px-[40px]">
+                        <div className="flex flex-col md:flex-row gap-8  border-t-[1px] border-[#dadada] pt-8">
 
                             <div className="flex-1">
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -107,6 +104,8 @@ export default function ProductPage({ params }) {
                         </div>
                     </div>
                 </div>
+
+                <ProductDetails />
                 <Review />
             </div>
             <Footer />
