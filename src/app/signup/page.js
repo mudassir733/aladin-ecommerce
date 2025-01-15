@@ -33,9 +33,12 @@ export default function SignupPage() {
     }
 
     const handleFormSubmit = async (event) => {
-        event.preventDefault()
+        event.preventDefault();
+        const dataToSend = {
+            username: `${formData.firstName} ${formData.lastName}`, email: `${formData.email}`, password: `${formData.password}`, confirmPassword: `${formData.confirmPassword}`
+        }
 
-        const registrationResult = await dispatch(registerUser(formData))
+        const registrationResult = await dispatch(registerUser(dataToSend))
 
         if (registrationResult.error) {
             return

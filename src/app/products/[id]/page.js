@@ -106,10 +106,11 @@ export default function ProductPage({ params }) {
                             </div>
 
 
-                            <Review />
+
                         </div>
                     </div>
                 </div>
+                <Review />
             </div>
             <Footer />
         </>

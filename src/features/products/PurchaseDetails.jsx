@@ -62,12 +62,12 @@ export default function PurchaseDetails() {
                 <h3 className="text-lg font-medium mb-4">Purchase details</h3>
                 <div className="space-y-4">
                     <button className="flex items-center gap-3 w-full text-left">
-                        <Truck className="w-5 h-5 text-teal-600" />
-                        <span className="text-teal-600">Shipping</span>
+                        <Truck className="w-5 h-5 text-primary" />
+                        <span className="text-primary">Shipping</span>
                     </button>
                     <button className="flex items-center gap-3 w-full text-left">
-                        <CreditCard className="w-5 h-5 text-teal-600" />
-                        <span className="text-teal-600">Payments</span>
+                        <CreditCard className="w-5 h-5 text-primary" />
+                        <span className="text-primary">Payments</span>
                     </button>
                 </div>
             </div>
