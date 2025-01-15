@@ -3,15 +3,18 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { Search, ShoppingCart, Menu, X, ChevronDown } from 'lucide-react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 // assets
 import Logo from "@/assets/images/Logo.svg"
+import AccountModal from '../AccountModal'
 
 const HeaderClient = ({ categories }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [category, setCategory] = useState('All Categories')
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const dropdownRef = useRef(null)
+
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -35,6 +38,9 @@ const HeaderClient = ({ categories }) => {
         window.addEventListener('resize', handleResize)
         return () => window.removeEventListener('resize', handleResize)
     }, [])
+
+
+
     return (
         <>
             <div className="container mx-auto px-4 py-3 ">
@@ -100,7 +106,6 @@ const HeaderClient = ({ categories }) => {
                         <Link href="/contact" className="hover:text-primaryExtraLight duration-200 transition-colors">Contact Us</Link>
                         <Link href="/account" className="hover:text-primaryExtraLight duration-200 transition-colors">My Account</Link>
                     </nav>
-
 
                     <Link href="/cart" className="flex items-center hover:text-primaryExtraLight transition-colors duration-200">
                         <ShoppingCart size={24} />

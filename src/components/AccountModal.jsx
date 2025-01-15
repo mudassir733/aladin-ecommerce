@@ -6,18 +6,8 @@ import { X } from 'lucide-react'
 
 export default function AccountModal({ isOpen, onClose }) {
     const router = useRouter()
-    const [isVisible, setIsVisible] = useState(false)
+    if (!isOpen) return null;
 
-    useEffect(() => {
-        if (isOpen) {
-            setIsVisible(true)
-        } else {
-            const timer = setTimeout(() => setIsVisible(false), 300)
-            return () => clearTimeout(timer)
-        }
-    }, [isOpen])
-
-    if (!isVisible) return null
 
     return (
         <div className={`fixed inset-0 z-50 flex items-center justify-center p-4 ${isOpen ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
