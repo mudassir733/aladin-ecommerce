@@ -28,13 +28,13 @@ export default function ProfileSidebar({ activePage }) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const pathname = usePathname()
 
-    console.log(pathname);
+
 
 
     return (
         <>
             <button
-                className="fixed top-4 left-4 z-50 md:hidden bg-teal-600 p-2 rounded-full"
+                className="fixed top-4 left-4 z-50 md:hidden bg-primaryMedium text-white p-2 rounded-full"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
                 {isMobileMenuOpen ? <X /> : <Menu />}
@@ -93,7 +93,7 @@ export default function ProfileSidebar({ activePage }) {
 
             {isMobileMenuOpen && (
                 <div
-                    className="fixed inset-0 bg-black/50 z-30 md:hidden"
+                    className="fixed inset-0  md:hidden"
                     onClick={() => setIsMobileMenuOpen(false)}
                 />
             )}
