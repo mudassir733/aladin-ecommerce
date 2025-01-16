@@ -24,7 +24,7 @@ const navigationLinks = [
 ]
 
 
-const HeaderSecndClient = ({ categories }) => {
+const HeaderSecndClient = ({ categories, name }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [category, setCategory] = useState('All Categories')
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
@@ -126,7 +126,7 @@ const HeaderSecndClient = ({ categories }) => {
 
 
                         <div className="hidden md:flex flex-col items-start">
-                            <span className="text-sm">Hello, Kiran</span>
+                            <span className="text-sm">Hello, {name}</span>
                             <span className="text-sm font-medium">Account for Eshopify...</span>
                         </div>
                         <div className='flex items-center justify-between gap-4'>

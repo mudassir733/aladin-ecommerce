@@ -24,12 +24,9 @@ const navigationItems = [
 
 
 
-export default function ProfileSidebar({ activePage }) {
+export default function ProfileSidebar({ image, name, balance }) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const pathname = usePathname()
-
-
-
 
     return (
         <>
@@ -40,8 +37,6 @@ export default function ProfileSidebar({ activePage }) {
                 {isMobileMenuOpen ? <X /> : <Menu />}
             </button>
 
-
-
             <div className={`
          top-0 left-0 h-full w-64 text-white transition-transform duration-300 ease-in-out z-40
         ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
@@ -49,17 +44,17 @@ export default function ProfileSidebar({ activePage }) {
       `}>
                 <div className="p-6 text-center border-b border-teal-500 bg-subPrimary">
                     <div className="relative w-24 h-24 mx-auto mb-4">
-                        <Image
-                            src={profile}
+                        <img
+                            src={image}
                             alt="Profile picture"
-                            fill
+
                             className="rounded-full object-cover"
                         />
                     </div>
-                    <h2 className="text-xl font-semibold mb-2">Kiran</h2>
+                    <h2 className="text-xl font-semibold mb-2">{name}</h2>
                     <div className="rounded-lg border-[1px] border-[#dadada] p-1 px-8 inline-block">
                         <p className="text-sm text-teal-100">Balance</p>
-                        <p className="text-xl font-bold">$45.00</p>
+                        <p className="text-xl font-bold">${balance}</p>
                     </div>
                 </div>
 
