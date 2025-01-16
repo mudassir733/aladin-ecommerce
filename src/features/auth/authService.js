@@ -12,14 +12,6 @@ export const loginUserApi = async (credentials) => {
 
 }
 
-export const loginUserGoogleApi = async () => {
-    try {
-        const response = await axios.get(`${BASE_URL}/api/auth/google`);
-        return response;
-    } catch (error) {
-        throw new Error(error.response.data.message);
-    }
-}
 
 export const registerUserApi = async (credentials) => {
     try {

@@ -18,7 +18,8 @@ export default {
         primaryLight: "var(--primary-700)",
         secondary: "var(--secondary-100)",
         white: "var(--secondary-00)",
-        primaryExtraLight: "var(--primary-400)"
+        primaryExtraLight: "var(--primary-400)",
+        subPrimary: "var(--primary-600)"
       },
       fontFamily: {
         roboto: "var(--font-roboto)",

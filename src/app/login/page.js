@@ -46,19 +46,25 @@ export default function LoginPage() {
             toast.error(error.message)
         }
     }
+    // const handleGoogleLogin = async () => {
+    //     try {
+    //         const response = await axios.get(`http://localhost:5000/api/auth/google`);
+    //         console.log(response);
+
+    //         return response;
+    //     } catch (error) {
+    //         console.log(error);
+
+    //         throw new Error(error.response);
+    //     }
+
+    // }
+
     const handleGoogleLogin = async () => {
-        try {
-            const response = await axios.get(`http://localhost:5000/api/auth/google`);
-            console.log(response);
-
-            return response;
-        } catch (error) {
-            console.log(error);
-
-            throw new Error(error.response);
-        }
+        window.location.href = "http://localhost:5000/api/auth/google"
 
     }
+
 
     return (
         <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -72,7 +78,7 @@ export default function LoginPage() {
                 </h2>
                 <p className="mt-2 text-center text-sm text-gray-600">
                     Don't have an account?{' '}
-                    <Link href="/login" className="font-medium text-teal-600 hover:text-teal-500">
+                    <Link href="/signup" className="font-medium text-teal-600 hover:text-teal-500">
                         Sign up
                     </Link>
                 </p>

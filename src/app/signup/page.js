@@ -10,7 +10,7 @@ import { toast } from 'react-toastify'
 
 // store
 import { useSelector, useDispatch } from 'react-redux'
-import { loginWithGoogle, registerUser } from '@/features/auth/authThunk'
+import { registerUser } from '@/features/auth/authThunk'
 
 // assets
 import Logo from "@/assets/images/Logo.svg"
