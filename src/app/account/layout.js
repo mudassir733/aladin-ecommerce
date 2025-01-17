@@ -41,12 +41,12 @@ export default async function AccountLayout({ children }) {
     return (
         <>
             <HeaderSecnd />
-            <div className="flex min-h-screen md:px-[50px] w-full">
+            <div className="flex min-h-screen md:px-[50px] w-full bg-gray-100">
                 {/* Sidebar */}
                 <ProfileSidebar image={userData.image} name={userData.firstName} lastName={userData.lastName} balance={userData.balance} />
 
                 {/* Main Content */}
-                <main className="flex-1 p-6">
+                <main className="flex-1">
                     {children}
                 </main>
             </div>

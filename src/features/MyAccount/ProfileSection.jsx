@@ -21,8 +21,8 @@ export default function ProfileSection() {
 
     return (
         <>
-            <div className='grid grid-cols-12'>
-                <form onSubmit={handleSubmit} className="col-start-1 md:col-end-8 col-end-12">
+            <div className='grid p-6 grid-cols-12'>
+                <form onSubmit={handleSubmit} className="md:col-start-1 col-start-1 md:col-end-8 col-end-12">
                     <h1 className="text-2xl font-semibold text-primaryMedium mb-8">
                         Personal Information
                     </h1>

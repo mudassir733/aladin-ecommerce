@@ -29,10 +29,10 @@ const transactions = [
 
 export default function TransactionHistory() {
     return (
-        <div className="bg-primary rounded-lg p-6">
+        <div className="bg-primaryMedium shadow-lg rounded-lg p-6">
             <div className="flex justify-between items-center mb-6">
                 <h2 className="text-lg text-white">Transaction History</h2>
-                <button className="text-teal-500 hover:text-teal-400 text-sm">
+                <button className="text-gray-300 hover:text-white transition-all duration-200 text-sm">
                     View All
                 </button>
             </div>
@@ -40,7 +40,7 @@ export default function TransactionHistory() {
                 {transactions.map((transaction) => (
                     <div
                         key={transaction.id}
-                        className="flex items-center justify-between p-4 bg-gray-700 rounded-lg"
+                        className="flex items-center justify-between p-4 bg-primaryLight rounded-lg"
                     >
                         <div className="flex items-center gap-4">
                             <div className={`
@@ -57,7 +57,7 @@ export default function TransactionHistory() {
                             </div>
                             <div>
                                 <p className="text-white">{transaction.description}</p>
-                                <p className="text-sm text-gray-400">
+                                <p className="text-sm text-gray-300">
                                     {new Date(transaction.date).toLocaleDateString()} at {transaction.time}
                                 </p>
                             </div>

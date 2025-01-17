@@ -1,8 +1,11 @@
+import Location from '@/features/MyAccount/Location'
 import React from 'react'
 
 const LocationPage = () => {
     return (
-        <div>LocationPage</div>
+        <div>
+            <Location />
+        </div>
     )
 }
 

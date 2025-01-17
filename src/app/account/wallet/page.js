@@ -38,7 +38,7 @@ export default async function WalletPage() {
         }
     }
     return (
-        <div className="max-w-4xl mx-auto">
+        <div className="w-full !p-6 mx-auto">
             <h1 className="text-2xl font-semibold text-primaryMedium mb-8">My Wallet</h1>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

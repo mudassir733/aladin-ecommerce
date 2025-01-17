@@ -1,8 +1,11 @@
+import Rewards from '@/features/MyAccount/Rewards'
 import React from 'react'
 
 const RewardsPage = () => {
     return (
-        <div>RewardsPage</div>
+        <div>
+            <Rewards />
+        </div>
     )
 }
 

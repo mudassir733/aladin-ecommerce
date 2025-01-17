@@ -29,7 +29,7 @@ export default function ProfileSidebar({ image, name, balance, lastName }) {
     const pathname = usePathname()
     const firstLetter = name?.charAt(0).toUpperCase() || '?'
     const lastLetter = lastName?.charAt(0).toUpperCase() || '?'
-    console.log(lastLetter);
+
 
 
     return (
@@ -48,16 +48,20 @@ export default function ProfileSidebar({ image, name, balance, lastName }) {
       `}>
                 <div className="p-6 text-center border-b border-teal-500 bg-subPrimary">
                     <div className="relative w-24 h-24 mx-auto mb-4">
-                        {firstLetter ? (
-                            <div className="text-4xl flex items-center justify-center w-24 h-24 font-bold bg-primaryExtraLight rounded-[100%]">{firstLetter}{lastLetter}</div>
-                        ) : (
+                        {image ? (
                             <img
                                 src={image}
                                 alt="Profile picture"
-
-                                className="rounded-full object-cover"
+                                className="rounded-full object-cover w-24 h-24"
                             />
+                        ) : (
+
+                            <div className="text-4xl flex items-center justify-center w-24 h-24 font-bold bg-primaryExtraLight rounded-full">
+                                {firstLetter}
+                                {lastLetter}
+                            </div>
                         )}
+
                     </div>
                     <h2 className="text-xl font-semibold mb-2">{name}</h2>
                     <div className="rounded-lg border-[1px] border-[#dadada] p-1 px-8 inline-block">
@@ -66,7 +70,7 @@ export default function ProfileSidebar({ image, name, balance, lastName }) {
                     </div>
                 </div>
 
-                <nav className="p-4 border-x-[1px] border-[#dadada]">
+                <nav className="p-4 border-x-[1px] border-[#dadada] bg-white ">
                     <ul className="space-y-2">
                         {navigationItems.map((item) => {
                             const Icon = item.icon
