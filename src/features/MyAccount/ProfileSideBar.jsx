@@ -24,9 +24,13 @@ const navigationItems = [
 
 
 
-export default function ProfileSidebar({ image, name, balance }) {
+export default function ProfileSidebar({ image, name, balance, lastName }) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const pathname = usePathname()
+    const firstLetter = name?.charAt(0).toUpperCase() || '?'
+    const lastLetter = lastName?.charAt(0).toUpperCase() || '?'
+    console.log(lastLetter);
+
 
     return (
         <>
@@ -44,12 +48,16 @@ export default function ProfileSidebar({ image, name, balance }) {
       `}>
                 <div className="p-6 text-center border-b border-teal-500 bg-subPrimary">
                     <div className="relative w-24 h-24 mx-auto mb-4">
-                        <img
-                            src={image}
-                            alt="Profile picture"
+                        {firstLetter ? (
+                            <div className="text-4xl flex items-center justify-center w-24 h-24 font-bold bg-primaryExtraLight rounded-[100%]">{firstLetter}{lastLetter}</div>
+                        ) : (
+                            <img
+                                src={image}
+                                alt="Profile picture"
 
-                            className="rounded-full object-cover"
-                        />
+                                className="rounded-full object-cover"
+                            />
+                        )}
                     </div>
                     <h2 className="text-xl font-semibold mb-2">{name}</h2>
                     <div className="rounded-lg border-[1px] border-[#dadada] p-1 px-8 inline-block">

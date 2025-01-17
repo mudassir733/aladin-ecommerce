@@ -24,7 +24,7 @@ export default async function AccountLayout({ children }) {
 
             },
         });
-        console.log("Hello i reached here");
+        // console.log("Hello i reached here");
         if (!response.status === 401) {
             redirect('/login')
         }
@@ -43,7 +43,7 @@ export default async function AccountLayout({ children }) {
             <HeaderSecnd />
             <div className="flex min-h-screen md:px-[50px] w-full">
                 {/* Sidebar */}
-                <ProfileSidebar image={userData.image} name={userData.firstName} balance={userData.balance} />
+                <ProfileSidebar image={userData.image} name={userData.firstName} lastName={userData.lastName} balance={userData.balance} />
 
                 {/* Main Content */}
                 <main className="flex-1 p-6">

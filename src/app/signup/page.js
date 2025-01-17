@@ -30,18 +30,19 @@ export default function SignupPage() {
         confirmPassword: ''
     })
 
+
+
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        const dataToSend = {
-            username: `${formData.firstName} ${formData.lastName}`, email: `${formData.email}`, password: `${formData.password}`, confirmPassword: `${formData.confirmPassword}`
-        }
+
 
         try {
-            const registrationResult = await dispatch(registerUser(dataToSend))
+            const registrationResult = await dispatch(registerUser(formData))
             console.log(registrationResult);
 
 
@@ -149,6 +150,7 @@ export default function SignupPage() {
                                     required
                                     className="block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-teal-500 focus:outline-none focus:ring-teal-500 sm:text-sm"
                                 />
+
                                 <button
                                     type="button"
                                     className="absolute inset-y-0 right-0 flex items-center px-3"
@@ -207,11 +209,30 @@ export default function SignupPage() {
                         <div>
                             <button
                                 type="submit"
+                                disabled={isLoading}
                                 className="flex w-full justify-center items-center gap-2 rounded-md border border-transparent bg-primaryMedium py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-primaryLight focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
                             >
-                                Create account
-                                <ArrowRight className="h-4 w-4" />
+                                {isLoading ? (
+
+                                    <>
+                                        <span>Create Account</span>
+                                        <div
+                                            className="inline-block h-[20px] w-[20px] animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
+                                            role="status">
+                                            <span
+                                                className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+                                            >Loading...</span>
+                                        </div>
+                                    </>
+                                ) : "Create Account"}
+                                {!isLoading && <ArrowRight className="h-4 w-4" />}
                             </button>
+
+                            {isError && (
+                                <div className='text-red-500 text-center py-3 font-bold'>
+                                    {Array.isArray(isError) ? isError.join(', ') : isError}
+                                </div>
+                            )}
                         </div>
                     </form>
 
@@ -265,8 +286,8 @@ export default function SignupPage() {
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 
