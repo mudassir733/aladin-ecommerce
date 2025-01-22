@@ -14,6 +14,7 @@ import { loginWithGoogle, loginUser } from '@/features/auth/authThunk'
 // assets
 import Logo from "@/assets/images/Logo.svg"
 import axios from 'axios'
+import Loading from '@/components/Loading/Loading'
 
 export default function LoginPage() {
     const dispatch = useDispatch()
@@ -136,10 +137,18 @@ export default function LoginPage() {
                         <div>
                             <button
                                 type="submit"
+                                disabled={isLoading}
                                 className="flex w-full justify-center items-center gap-2 rounded-md border border-transparent bg-primaryMedium py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-primaryLight focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
                             >
-                                Login account
-                                <ArrowRight className="h-4 w-4" />
+                                {isLoading ? (
+                                    <>
+                                        <span>Login account</span>
+                                        <Loading />
+                                    </>
+                                ) : (
+                                    "Login account"
+                                )}
+                                {!isLoading && <ArrowRight className="h-4 w-4" />}
                             </button>
                         </div>
                     </form>

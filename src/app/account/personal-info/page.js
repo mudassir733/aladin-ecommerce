@@ -1,8 +1,9 @@
 import ProfileSection from '@/features/MyAccount/ProfileSection'
 import axios from 'axios';
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import React from 'react'
+// import { toast } from 'react-toastify';
 
 
 
@@ -14,27 +15,27 @@ export default async function PersonalInfoPage() {
     if (!token) {
         redirect('/login')
     }
-
+    let data;
     try {
         const response = await axios.get("http://localhost:5000/api/users/me", {
             headers: {
                 Cookie: `access_token=${token}`,
-
             },
         });
-        console.log("Hello i reached here");
+        // console.log("Hello i reached here");
         if (!response.status === 401) {
             redirect('/login')
         }
-        console.log('User Data:', response.data.data);
+        data = response.data.data;
     } catch (error) {
         console.error('Error fetching user data:', error.message);
     }
 
 
+
     return (
         <div>
-            <ProfileSection />
+            <ProfileSection token={token} userData={data} />
         </div>
     )
 }

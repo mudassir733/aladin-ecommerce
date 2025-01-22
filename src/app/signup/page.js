@@ -15,6 +15,7 @@ import { registerUser } from '@/features/auth/authThunk'
 // assets
 import Logo from "@/assets/images/Logo.svg"
 import axios from 'axios'
+import Loading from '@/components/Loading/Loading'
 
 export default function SignupPage() {
     const dispatch = useDispatch()
@@ -216,13 +217,7 @@ export default function SignupPage() {
 
                                     <>
                                         <span>Create Account</span>
-                                        <div
-                                            className="inline-block h-[20px] w-[20px] animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
-                                            role="status">
-                                            <span
-                                                className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
-                                            >Loading...</span>
-                                        </div>
+                                        <Loading />
                                     </>
                                 ) : "Create Account"}
                                 {!isLoading && <ArrowRight className="h-4 w-4" />}

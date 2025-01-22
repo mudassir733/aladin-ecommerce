@@ -41,7 +41,7 @@ export default async function AccountLayout({ children }) {
     return (
         <>
             <HeaderSecnd />
-            <div className="flex min-h-screen md:px-[50px] w-full bg-gray-100">
+            <div className="flex h-screen md:px-[50px] w-full bg-gray-100">
                 {/* Sidebar */}
                 <ProfileSidebar image={userData.image} name={userData.firstName} lastName={userData.lastName} balance={userData.balance} />
 

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Wallet, Gift, Package, User, MapPin, CreditCard, Bell, HelpCircle, LogOut, Menu, X } from 'lucide-react'
+import { Wallet, Gift, Package, User, MapPin, CreditCard, Bell, HelpCircle, LogOut, Menu, X, SquarePen } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 
 
@@ -49,17 +49,52 @@ export default function ProfileSidebar({ image, name, balance, lastName }) {
                 <div className="p-6 text-center border-b border-teal-500 bg-subPrimary">
                     <div className="relative w-24 h-24 mx-auto mb-4">
                         {image ? (
-                            <img
-                                src={image}
-                                alt="Profile picture"
-                                className="rounded-full object-cover w-24 h-24"
-                            />
+                            <div className="text-4xl flex items-center justify-center w-24 h-24  rounded-full relative group">
+                                <div className="absolute inset-0 bg-black bg-opacity-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <img
+                                    src={image}
+                                    alt="Profile picture"
+                                    className="rounded-full object-cover w-24 h-24"
+                                />
+                                <label htmlFor='file-upload' className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer'>
+                                    <SquarePen />
+                                </label>
+
+                                <input
+                                    id="file-upload"
+                                    type="file"
+                                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                    onChange={(e) => {
+                                        const file = e.target.files[0];
+                                        if (file) {
+                                            console.log("Selected file:", file);
+                                        }
+                                    }}
+                                />
+                            </div>
                         ) : (
 
-                            <div className="text-4xl flex items-center justify-center w-24 h-24 font-bold bg-primaryExtraLight rounded-full">
+                            <div className="text-4xl flex items-center justify-center w-24 h-24 font-bold bg-primaryExtraLight rounded-full relative group">
                                 {firstLetter}
                                 {lastLetter}
+                                <div className="absolute inset-0 bg-black bg-opacity-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <label htmlFor='file-upload' className='absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer'>
+                                    <SquarePen />
+                                </label>
+
+                                <input
+                                    id="file-upload"
+                                    type="file"
+                                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                    onChange={(e) => {
+                                        const file = e.target.files[0];
+                                        if (file) {
+                                            console.log("Selected file:", file);
+                                        }
+                                    }}
+                                />
                             </div>
+
                         )}
 
                     </div>

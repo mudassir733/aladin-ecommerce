@@ -1,8 +1,11 @@
+import Payments from '@/features/MyAccount/Payments'
 import React from 'react'
 
 const PaymentMethodPage = () => {
     return (
-        <div>PaymentMethodPage</div>
+        <div>
+            <Payments />
+        </div>
     )
 }
 

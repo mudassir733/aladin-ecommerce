@@ -3,6 +3,8 @@ import { Roboto } from "next/font/google";
 import { store } from "@/store/store"
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import "react-toastify/dist/ReactToastify.css"
 import "./globals.css";
 
@@ -27,20 +29,22 @@ export default function Layout({ children }) {
         className={roboto.className}
       >
         <Provider store={store}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
 
-          <main> {children}</main>
+            <main> {children}</main>
+          </LocalizationProvider>
         </Provider>
 
         <ToastContainer
           position="bottom-right"
-          autoClose={5000}
+          autoClose={3000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick={false}
           rtl={false}
           pauseOnFocusLoss
           draggable
-          pauseOnHover
+          pauseOnHover={false}
           theme="light"
 
         />

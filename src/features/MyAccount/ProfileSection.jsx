@@ -1,22 +1,85 @@
 'use client'
 
 import { useState } from 'react'
-import { ChevronDown } from 'lucide-react'
-import ProfileSidebar from './ProfileSideBar'
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs from 'dayjs';
 
-export default function ProfileSection() {
+
+// Store
+import { updateUserProfile } from '@/features/auth/authThunk';
+
+
+export default function ProfileSection({ userData }) {
+    const dispatch = useDispatch();
+    const { isLoading } = useSelector((state) => state.auth)
+
+
+    // console.log(userData);
+
+
     const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        birthdate: '',
-        gender: ''
-    })
+        firstName: userData?.firstName || "",
+        lastName: userData?.lastName || "",
+        email: userData?.email || "",
+        phoneNumber: userData?.phoneNumber || "",
+        dateOfBirth: userData?.dateOfBirth || "",
+        gender: userData?.gender || "",
+    });
 
-    const handleSubmit = (e) => {
+    const validatePhoneNumber = (phoneNumber) => {
+        const phoneRegex = /^[+]?[0-9]{10,15}$/;
+        return phoneRegex.test(phoneNumber);
+    };
+
+
+    const handleDateChange = (newValue) => {
+        setFormData({
+            ...formData,
+            dateOfBirth: newValue ? dayjs(newValue).toISOString() : "",
+        });
+    };
+
+    const cancelFormData = () => {
+        setFormData({
+            firstName: userData?.firstName || "",
+            lastName: userData?.lastName || "",
+            email: userData?.email || "",
+            phoneNumber: userData?.phoneNumber || "",
+            dateOfBirth: userData?.dateOfBirth || "",
+            gender: userData?.gender || "",
+        });
+    }
+
+
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        // Handle form submission
+
+        const updateFields = Object.keys(formData).reduce((accumulator, key) => {
+            if (formData[key] !== "" && formData[key] !== null) {
+                accumulator[key] = formData[key]
+            }
+            // console.log("ACC", accumulator);
+
+            return accumulator
+        }, {})
+
+        if (updateFields.phoneNumber && !validatePhoneNumber(updateFields.phoneNumber)) {
+            toast.error("Invalid phone number format");
+            return;
+        }
+
+        try {
+            await dispatch(updateUserProfile(updateFields))
+        } catch (error) {
+            toast.error("Failed to update profile")
+            console.error(error.message)
+
+        }
     }
 
     return (
@@ -28,8 +91,6 @@ export default function ProfileSection() {
                     </h1>
 
                     <div className="space-y-6">
-
-
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label className="block text-sm font-medium text-gray-400 mb-2">
@@ -54,8 +115,6 @@ export default function ProfileSection() {
                                 />
                             </div>
                         </div>
-
-
                         <div>
                             <label className="block text-sm font-medium text-gray-400 mb-2">
                                 Email Address
@@ -67,31 +126,57 @@ export default function ProfileSection() {
                                 className="w-full px-4 py-2  border border-primaryMedium rounded-lg text-gray-500 focus:outline-none focus:border-teal-500"
                             />
                         </div>
-
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
                             <div>
                                 <label className="block text-sm font-medium text-gray-400 mb-2">
                                     Phone Number
                                 </label>
                                 <input
                                     type="text"
-                                    value={formData.lastName}
-                                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                                    value={formData.phoneNumber}
+                                    onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
                                     className="w-full px-4 py-2 border border-primaryMedium rounded-lg text-gray-500 focus:outline-none focus:border-teal-500"
                                 />
+
+                                {!validatePhoneNumber(formData.phoneNumber) && formData.phoneNumber && (
+                                    <p className="text-red-500 text-sm">Invalid phone number</p>
+                                )}
                             </div>
                             <div>
+
+
                                 <label className="block text-sm font-medium text-gray-400 mb-2">
-                                    Birth Date
+                                    Date Of Birth
                                 </label>
-                                <input
-                                    type="text"
-                                    placeholder="DD/MM/YY"
-                                    value={formData.birthdate}
-                                    onChange={(e) => setFormData({ ...formData, birthdate: e.target.value })}
-                                    className="w-full px-4 py-2  border border-primaryMedium rounded-lg text-gray-500 focus:outline-none focus:border-teal-500"
-                                />
+
+                                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                    <DatePicker
+                                        slotProps={{
+                                            textField: {
+                                                InputProps: {
+                                                    className:
+                                                        "!w-[262px] !h-[42px] !min-w-full !border-none !rounded-lg !text-gray-500 hover:!outline-none hover:!border-none focus:!border-none focus:!outline-none !bg-white",
+                                                    sx: {
+                                                        "& .MuiOutlinedInput-root": {
+                                                            border: "none",
+                                                            "&:hover": {
+                                                                border: "none",
+                                                            },
+                                                            "&.Mui-focused": {
+                                                                border: "none",
+                                                                outline: "none",
+                                                            },
+                                                        },
+                                                    },
+                                                },
+                                            },
+                                        }}
+
+                                        value={formData.dateOfBirth ? dayjs(formData.dateOfBirth) : null}
+                                        onChange={handleDateChange}
+                                    />
+                                </LocalizationProvider>
+
                             </div>
                         </div>
 
@@ -138,6 +223,7 @@ export default function ProfileSection() {
 
                         <div className="flex gap-4">
                             <button
+                                onClick={cancelFormData}
                                 type="button"
                                 className="px-10 py-2 border border-teal-500 text-teal-500 rounded-sm hover:bg-primaryMedium hover:text-white transition-colors"
                             >
@@ -145,9 +231,10 @@ export default function ProfileSection() {
                             </button>
                             <button
                                 type="submit"
+                                disabled={isLoading}
                                 className="px-10 py-2 bg-primaryMedium text-white rounded-sm hover:bg-primaryLight transition-colors"
                             >
-                                Save
+                                {isLoading ? 'Saving...' : 'Save'}
                             </button>
                         </div>
                     </div>

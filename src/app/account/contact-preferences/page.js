@@ -1,8 +1,11 @@
+import ContactPreference from '@/features/MyAccount/ContactPreference'
 import React from 'react'
 
 const ContactPreferencePage = () => {
     return (
-        <div>ContactPreferencePage</div>
+        <div>
+            <ContactPreference />
+        </div>
     )
 }
 
