@@ -1,7 +1,9 @@
 import { setLoading, setUser, setError } from "./authSlice";
-import { loginUserApi, registerUserApi } from "./authService";
+import { loginUserApi, registerUserApi, updateUserProfileApi } from "./authService";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
+
+
 
 export const loginUser = (credentials) => async (dispatch) => {
     dispatch(setLoading(true))
@@ -45,4 +47,23 @@ export const registerUser = (credentials) => async (dispatch) => {
     } finally {
         dispatch(setLoading(false))
     }
+}
+
+
+
+export const updateUserProfile = (formData) => async (dispatch) => {
+    dispatch(setLoading(true))
+    try {
+        const updateUser = await updateUserProfileApi(formData)
+        dispatch(setUser(updateUser))
+        console.log("Updated user", updateUser);
+        return updateUser;
+    } catch (error) {
+        console.log("ERROR", error);
+        const errorMessage = error.message;
+        toast.error(errorMessage)
+    } finally {
+        dispatch(setLoading(false))
+    }
+
 }
