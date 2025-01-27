@@ -5,6 +5,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Wallet, Gift, Package, User, MapPin, CreditCard, Bell, HelpCircle, LogOut, Menu, X, SquarePen } from 'lucide-react'
 import { usePathname } from 'next/navigation'
+import { useDispatch, useSelector } from 'react-redux'
+
+
+
+// store
+import { setImage } from "@/features/auth/authSlice"
 
 
 // assets
@@ -24,13 +30,36 @@ const navigationItems = [
 
 
 
-export default function ProfileSidebar({ image, name, balance, lastName }) {
+export default function ProfileSidebar({ userImage, name, balance, lastName }) {
+    const dispatch = useDispatch()
+    const { image } = useSelector((state) => state.auth)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const pathname = usePathname()
     const firstLetter = name?.charAt(0).toUpperCase() || '?'
     const lastLetter = lastName?.charAt(0).toUpperCase() || '?'
 
+    console.log("userImage", userImage);
 
+    const handleImageChange = (event) => {
+        const file = event.target.files[0]
+        console.log("File", file);
+
+        if (file) {
+            const fileReader = new FileReader()
+            fileReader.onload = () => {
+                dispatch(
+                    setImage({
+                        file,
+                        preview: fileReader.result,
+                    })
+                )
+            }
+            console.log(fileReader);
+
+            fileReader.readAsDataURL(file)
+
+        }
+    }
 
     return (
         <>
@@ -48,11 +77,11 @@ export default function ProfileSidebar({ image, name, balance, lastName }) {
       `}>
                 <div className="p-6 text-center border-b border-teal-500 bg-subPrimary">
                     <div className="relative w-24 h-24 mx-auto mb-4">
-                        {image ? (
+                        {userImage ? (
                             <div className="text-4xl flex items-center justify-center w-24 h-24  rounded-full relative group">
                                 <div className="absolute inset-0 bg-black bg-opacity-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                 <img
-                                    src={image}
+                                    src={image?.preview || userImage}
                                     alt="Profile picture"
                                     className="rounded-full object-cover w-24 h-24"
                                 />
@@ -63,13 +92,9 @@ export default function ProfileSidebar({ image, name, balance, lastName }) {
                                 <input
                                     id="file-upload"
                                     type="file"
+                                    accept="image/*"
                                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                                    onChange={(e) => {
-                                        const file = e.target.files[0];
-                                        if (file) {
-                                            console.log("Selected file:", file);
-                                        }
-                                    }}
+                                    onChange={handleImageChange}
                                 />
                             </div>
                         ) : (

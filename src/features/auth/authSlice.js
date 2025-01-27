@@ -4,6 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     user: null,
     token: null,
+    image: null,
     isAuthenticated: false,
     isError: false,
     isSuccess: false,
@@ -24,10 +25,15 @@ const authSlice = createSlice({
             state.isError = false;
             state.isSuccess = true;
             state.isLoading = false;
+            state.image = action.payload.image || null;
         },
         setError(state, action) {
             state.isError = action.payload;
             state.isLoading = false;
+        },
+        setImage(state, action) {
+            state.image = action.payload;
+
         },
         logout(state) {
             state.user = null;
@@ -39,5 +45,5 @@ const authSlice = createSlice({
     }
 })
 
-export const { setLoading, setUser, setToken, setError, logout } = authSlice.actions;
+export const { setLoading, setUser, setToken, setError, logout, setImage } = authSlice.actions;
 export default authSlice.reducer;

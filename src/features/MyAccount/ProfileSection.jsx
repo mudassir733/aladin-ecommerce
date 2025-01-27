@@ -15,7 +15,7 @@ import { updateUserProfile } from '@/features/auth/authThunk';
 
 export default function ProfileSection({ userData }) {
     const dispatch = useDispatch();
-    const { isLoading } = useSelector((state) => state.auth)
+    const { isLoading, image } = useSelector((state) => state.auth)
 
 
     // console.log(userData);
@@ -73,8 +73,20 @@ export default function ProfileSection({ userData }) {
             return;
         }
 
+        const formPayload = new FormData();
+        Object.keys(updateFields).forEach((keys) => {
+            formPayload.append(keys, updateFields[keys])
+        })
+
+        if (image?.file) {
+            formPayload.append("image", image.file)
+
+        }
+        console.log("FormPayLoad", formPayload);
+
+
         try {
-            await dispatch(updateUserProfile(updateFields))
+            await dispatch(updateUserProfile(formPayload))
         } catch (error) {
             toast.error("Failed to update profile")
             console.error(error.message)
