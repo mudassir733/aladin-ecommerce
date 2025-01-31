@@ -7,9 +7,10 @@ import { toast } from "react-toastify";
 // instance of api client
 const apiDefault = getApiClient();
 const api = getApiClient({
-    headers: { "Content-Type": "multipart/form-data" },
+    // headers: { "Content-Type": "multipart/form-data" },
     withCredentials: true,
 })
+
 const apiForEmail = getApiClient({
     withCredentials: true,
     headers: { "Content-Type": "application/json" }
@@ -63,7 +64,11 @@ export const verifyEmailApi = async (token) => {
 
 export const updateUserProfileApi = async (formData) => {
     try {
-        const response = await api.patch('/api/users/me', formData);
+        const response = await api.patch('/api/users/me', formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            }
+        });
         console.log("update response", response);
         if (response.status === 200) {
             toast.success(response.data.message || "")

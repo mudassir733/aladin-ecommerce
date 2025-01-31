@@ -18,7 +18,7 @@ export default function ProfileSection({ userData }) {
     const { isLoading, image } = useSelector((state) => state.auth)
 
 
-    // console.log(userData);
+    console.log(userData);
 
 
     const [formData, setFormData] = useState({
@@ -79,6 +79,7 @@ export default function ProfileSection({ userData }) {
         })
 
         if (image?.file) {
+            console.log("Appending Image to FormData:", image.file);
             formPayload.append("image", image.file)
 
         }
@@ -87,6 +88,12 @@ export default function ProfileSection({ userData }) {
 
         try {
             await dispatch(updateUserProfile(formPayload))
+
+            // update the state immediately 
+            setFormData((prev) => ({
+                ...prev,
+                ...formPayload,
+            }));
         } catch (error) {
             toast.error("Failed to update profile")
             console.error(error.message)

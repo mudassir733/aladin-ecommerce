@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { MapPin, Plus, Edit2, Trash2 } from 'lucide-react'
 import AddressForm from './AddressForm'
+import GoogleMaps from '@/components/GoogleMap/GoogleMaps'
 
 const initialAddresses = [
     {
@@ -49,9 +50,10 @@ export default function Location() {
             <h1 className="text-2xl font-semibold text-primaryMedium mb-8">My Locations</h1>
 
 
-            <div className="bg-primaryMedium shadow-lg h-64 rounded-lg mb-8 flex items-center justify-center">
-                <MapPin className="text-white" size={48} />
-                <span className="ml-2 text-gray-200">Map Placeholder</span>
+            <div className="shadow-lg h-64 rounded-lg mb-8 flex items-center justify-center">
+                {/* <MapPin className="text-white" size={48} /> */}
+                {/* <span className="ml-2 text-gray-200">Map Placeholder</span> */}
+                <GoogleMaps />
             </div>
 
 

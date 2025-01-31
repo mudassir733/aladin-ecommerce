@@ -15,6 +15,7 @@ import { setImage } from "@/features/auth/authSlice"
 
 // assets
 import profile from "@/assets/images/profile.svg"
+import { updateUserProfile } from '../auth/authThunk'
 
 const navigationItems = [
     { icon: Wallet, label: 'My wallet', href: '/account/wallet' },
@@ -38,7 +39,6 @@ export default function ProfileSidebar({ userImage, name, balance, lastName }) {
     const firstLetter = name?.charAt(0).toUpperCase() || '?'
     const lastLetter = lastName?.charAt(0).toUpperCase() || '?'
 
-    console.log("userImage", userImage);
 
     const handleImageChange = (event) => {
         const file = event.target.files[0]

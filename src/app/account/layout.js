@@ -1,12 +1,15 @@
 // src/app/account/layout.js
-import Link from 'next/link';
-import Image from 'next/image';
-import ProfileSidebar from '@/features/MyAccount/ProfileSideBar';
-import HeaderSecnd from '@/components/Header_secnd/HeaderSecnd';
+
 import { cookies } from 'next/headers';
 import Cookies from 'js-cookie';
 import { redirect } from 'next/navigation';
 import axios from 'axios';
+
+
+// components
+import ProfileSidebar from '@/features/MyAccount/ProfileSideBar';
+import HeaderSecnd from '@/components/Header_secnd/HeaderSecnd';
+
 
 export default async function AccountLayout({ children }) {
     const cookieStore = await cookies();
@@ -24,7 +27,6 @@ export default async function AccountLayout({ children }) {
 
             },
         });
-        // console.log("Hello i reached here");
         if (!response.status === 401) {
             redirect('/login')
         }
@@ -42,10 +44,10 @@ export default async function AccountLayout({ children }) {
         <>
             <HeaderSecnd />
             <div className="flex h-screen md:px-[50px] w-full bg-gray-100">
-                {/* Sidebar */}
+
                 <ProfileSidebar userImage={userData.image} name={userData.firstName} lastName={userData.lastName} balance={userData.balance} />
 
-                {/* Main Content */}
+
                 <main className="flex-1">
                     {children}
                 </main>

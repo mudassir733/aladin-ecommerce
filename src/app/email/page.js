@@ -4,6 +4,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
+
+
+// store
 import { verifyEmail } from "@/features/auth/authThunk";
 
 export default function VerifyEmail() {

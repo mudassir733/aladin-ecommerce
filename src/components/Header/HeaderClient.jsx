@@ -3,11 +3,9 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { Search, ShoppingCart, Menu, X, ChevronDown } from 'lucide-react'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
 
 // assets
 import Logo from "@/assets/images/Logo.svg"
-import AccountModal from '../AccountModal'
 
 const HeaderClient = ({ categories }) => {
     const [isOpen, setIsOpen] = useState(false)
@@ -104,7 +102,7 @@ const HeaderClient = ({ categories }) => {
                         <Link href="/about" className="hover:text-primaryExtraLight duration-200 transition-colors">About Us</Link>
                         <Link href="/shop" className="hover:text-primaryExtraLight duration-200 transition-colors">Shop</Link>
                         <Link href="/contact" className="hover:text-primaryExtraLight duration-200 transition-colors">Contact Us</Link>
-                        <Link href="/account" className="hover:text-primaryExtraLight duration-200 transition-colors">My Account</Link>
+                        <Link href="/account/personal-info" className="hover:text-primaryExtraLight duration-200 transition-colors">My Account</Link>
                     </nav>
 
                     <Link href="/cart" className="flex items-center hover:text-primaryExtraLight transition-colors duration-200">
