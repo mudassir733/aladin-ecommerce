@@ -14,7 +14,6 @@ import { registerUser } from '@/features/auth/authThunk'
 
 // assets
 import Logo from "@/assets/images/Logo.svg"
-import axios from 'axios'
 import Loading from '@/components/Loading/Loading'
 
 export default function SignupPage() {
@@ -38,19 +37,14 @@ export default function SignupPage() {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
+
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-
-
+        console.log("FormData", formData);
         try {
-            const registrationResult = await dispatch(registerUser(formData))
-            console.log(registrationResult);
-
-
-            if (registrationResult) {
-                toast.success("Account created successfully")
-                router.push('/')
-            }
+            const response = await dispatch(registerUser(formData));
+            console.log("REGISTRATION RESPONSE", response);
+            return response
         } catch (error) {
             toast.error(error.message)
             console.log("Error:", error.message);

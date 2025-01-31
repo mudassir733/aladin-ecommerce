@@ -13,7 +13,6 @@ import { loginWithGoogle, loginUser } from '@/features/auth/authThunk'
 
 // assets
 import Logo from "@/assets/images/Logo.svg"
-import axios from 'axios'
 import Loading from '@/components/Loading/Loading'
 
 export default function LoginPage() {
@@ -43,6 +42,7 @@ export default function LoginPage() {
                 toast.success("User login successfully!")
                 router.push('/')
             }
+            return loginUserResult;
         } catch (error) {
             toast.error(error.message)
         }

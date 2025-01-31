@@ -1,9 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { verifyEmail } from "./authThunk";
 
 const initialState = {
     user: null,
-    token: null,
     image: null,
     isAuthenticated: false,
     isError: false,
@@ -21,7 +20,6 @@ const authSlice = createSlice({
         },
         setUser(state, action) {
             state.user = action.payload;
-            state.token = action.payload.token || null;
             state.isError = false;
             state.isSuccess = true;
             state.isLoading = false;
@@ -37,11 +35,26 @@ const authSlice = createSlice({
         },
         logout(state) {
             state.user = null;
-            state.token = null;
             state.isError = false;
             state.isSuccess = false;
             state.isLoading = false;
         }
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(verifyEmail.pending, (state) => {
+                state.isLoading = true;
+                state.isError = false;
+            })
+            .addCase(verifyEmail.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isAuthenticated = true;
+                state.user = action.payload;
+            })
+            .addCase(verifyEmail.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = action.payload;
+            });
     }
 })
 

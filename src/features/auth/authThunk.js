@@ -1,7 +1,8 @@
 import { setLoading, setUser, setError } from "./authSlice";
-import { loginUserApi, registerUserApi, updateUserProfileApi } from "./authService";
-import Cookies from "js-cookie";
+import { loginUserApi, registerUserApi, updateUserProfileApi, verifyEmailApi } from "./authService";
 import { toast } from "react-toastify";
+import Cookies from "js-cookie";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 
 
@@ -10,7 +11,6 @@ export const loginUser = (credentials) => async (dispatch) => {
     try {
         const response = await loginUserApi(credentials)
         console.log("RESPONSE", response);
-        Cookies.set('access_token', response.access_token)
         dispatch(setLoading(false))
         return dispatch(setUser(response))
 
@@ -29,12 +29,11 @@ export const registerUser = (credentials) => async (dispatch) => {
     dispatch(setLoading(true))
     try {
         const response = await registerUserApi(credentials)
-        console.log("RESPONSE", response);
-        Cookies.set('access_token', response.access_token)
+        console.log("RESPONSE 11", response);
+        toast.success("Registration successful! Check your email to verify your account.");
         dispatch(setLoading(false))
         return dispatch(setUser(response))
     } catch (error) {
-
         const errorMessage = error.message;
         console.log(errorMessage);
         dispatch(setError(errorMessage))
@@ -48,6 +47,23 @@ export const registerUser = (credentials) => async (dispatch) => {
         dispatch(setLoading(false))
     }
 }
+
+// very email
+export const verifyEmail = createAsyncThunk(
+    "auth/verifyEmail",
+    async (token, { rejectWithValue }) => {
+        try {
+            const response = await verifyEmailApi(token);
+            const newToken = response?.access_token;
+            if (newToken) {
+                Cookies.set("access_token", newToken);
+            }
+            return response;
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
 
 
 
