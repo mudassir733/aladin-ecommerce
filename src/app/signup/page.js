@@ -52,7 +52,7 @@ export default function SignupPage() {
         }
     }
     const handleGoogleLogin = async () => {
-        window.location.href = "http://localhost:5000/api/auth/google"
+        window.location.href = "https://alladin-ecommerce.koyeb.app/api/auth/google"
 
     }
 
