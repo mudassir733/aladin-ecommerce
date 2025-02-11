@@ -53,7 +53,8 @@ export const verifyEmailApi = async (token) => {
         console.log("NEW TOKEN", newToken);
 
         if (newToken) {
-            Cookies.set("access_token", newToken);
+            Cookies.set("access_token", newToken, { expires: 30 });
+
         }
         return response.data;
     } catch (error) {

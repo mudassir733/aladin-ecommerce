@@ -51,8 +51,6 @@ export default function Location() {
 
 
             <div className="shadow-lg h-64 rounded-lg mb-8 flex items-center justify-center">
-                {/* <MapPin className="text-white" size={48} /> */}
-                {/* <span className="ml-2 text-gray-200">Map Placeholder</span> */}
                 <GoogleMaps />
             </div>
 

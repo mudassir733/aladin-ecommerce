@@ -6,7 +6,9 @@ export function middleware(request) {
     const token = request.cookies.get("access_token")?.value
 
 
-    const protectedRoute = ['/account', '/', 'products']
+    const protectedRoute = ['/account/personal-info', '/', 'products']
+    console.log(protectedRoute);
+
 
     if (protectedRoute.some((route) => request.nextUrl.pathname.startsWith(route))) {
         if (!token) {
@@ -23,5 +25,5 @@ export function middleware(request) {
 
 
 export const config = {
-    matcher: ['/account', '/products'],
+    matcher: ['/account/personal-info', '/products'],
 };
