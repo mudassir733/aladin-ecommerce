@@ -128,7 +128,7 @@ const HeaderClient = ({ categories }) => {
                         <Link href="/about" className="hover:text-primaryExtraLight duration-200 transition-colors">About Us</Link>
                         <Link href="/shop" className="hover:text-primaryExtraLight duration-200 transition-colors">Shop</Link>
                         <Link href="/contact" className="hover:text-primaryExtraLight duration-200 transition-colors">Contact Us</Link>
-                        <Link href="/account" className="hover:text-primaryExtraLight duration-200 transition-colors">My Account</Link>
+                        <Link href="/account/personal-info" className="hover:text-primaryExtraLight duration-200 transition-colors">My Account</Link>
                     </nav>
                     <div className="mt-8 h-12">
                         <input
