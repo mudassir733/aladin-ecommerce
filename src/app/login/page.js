@@ -62,7 +62,7 @@ export default function LoginPage() {
     // }
 
     const handleGoogleLogin = async () => {
-        window.location.href = "https://alladin-ecommerce.koyeb.app/api/auth/google"
+        window.location.href = "https://secondary-clarette-alladin-299464c9.koyeb.app/api/auth/google"
 
     }
 
