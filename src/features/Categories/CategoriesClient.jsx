@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 const CategoriesClient = ({ categories }) => {
     return (
-        <section className="py-8 mx-auto w-full md:mt-[17rem] mt-[30rem] md:pl-[88px] md:pr-[88px]">
+        <section className="mx-auto w-full md:mt-[17rem] mt-[30rem] md:pl-[88px] md:pr-[88px]">
             <div className="flex justify-between items-center mb-6 flex-wrap">
                 <h2 className="heading-1 text-center md:text-left w-full md:w-[450px]">Explore popular category</h2>
                 <Link
@@ -30,7 +30,7 @@ const CategoriesClient = ({ categories }) => {
                 </Link>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-1 pl-[12px] pr-[12px] sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                 {categories.map((category) => (
                     <Link
                         key={category.id}

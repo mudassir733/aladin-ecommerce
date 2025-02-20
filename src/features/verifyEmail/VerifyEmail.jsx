@@ -31,7 +31,7 @@ export default function VerifyEmail() {
             })
             .catch((errorMessage) => {
                 toast.error(errorMessage);
-                router.push("/");
+                // router.push("/");
             });
 
     }, [token, dispatch, router]);
