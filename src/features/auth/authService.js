@@ -45,12 +45,15 @@ export const registerUserApi = async (credentials) => {
 export const verifyEmailApi = async (token) => {
     try {
         const response = await apiForEmail.post("/api/auth/verify-email", {}, {
+
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         });
         const newToken = response?.data?.access_token;
         console.log("NEW TOKEN", newToken);
+        console.log("NEW RESPONSE EMAIL", response);
+
 
         if (newToken) {
             Cookies.set("access_token", newToken, { expires: 30 });
@@ -58,7 +61,9 @@ export const verifyEmailApi = async (token) => {
         }
         return response.data;
     } catch (error) {
+        console.log(error.response?.data?.message);
         throw new Error(error.response?.data?.message || "Email verification failed");
+
     }
 };
 

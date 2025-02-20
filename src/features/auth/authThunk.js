@@ -54,12 +54,15 @@ export const verifyEmail = createAsyncThunk(
     async (token, { rejectWithValue }) => {
         try {
             const response = await verifyEmailApi(token);
+            console.log("EMAIL RESPONSE", response);
+
             const newToken = response?.access_token;
             if (newToken) {
                 Cookies.set("access_token", newToken, { expires: 30 });
             }
             return response;
         } catch (error) {
+            console.log(error);
             return rejectWithValue(error.message);
         }
     }

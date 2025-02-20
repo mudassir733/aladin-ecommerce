@@ -31,6 +31,8 @@ export default function VerifyEmail() {
             })
             .catch((errorMessage) => {
                 toast.error(errorMessage);
+                console.log(errorMessage);
+
                 // router.push("/");
             });
 
