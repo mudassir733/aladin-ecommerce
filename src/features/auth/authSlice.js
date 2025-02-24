@@ -1,10 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { verifyEmail } from "./authThunk";
 
 const initialState = {
     user: null,
     image: null,
-    isAuthenticated: false,
     isError: false,
     isSuccess: false,
     isLoading: false
@@ -39,22 +37,6 @@ const authSlice = createSlice({
             state.isSuccess = false;
             state.isLoading = false;
         }
-    },
-    extraReducers: (builder) => {
-        builder
-            .addCase(verifyEmail.pending, (state) => {
-                state.isLoading = true;
-                state.isError = false;
-            })
-            .addCase(verifyEmail.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.isAuthenticated = true;
-                state.user = action.payload;
-            })
-            .addCase(verifyEmail.rejected, (state, action) => {
-                state.isLoading = false;
-                state.isError = action.payload;
-            });
     }
 })
 

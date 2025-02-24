@@ -1,8 +1,7 @@
 import { setLoading, setUser, setError } from "./authSlice";
-import { loginUserApi, registerUserApi, updateUserProfileApi, verifyEmailApi } from "./authService";
+import { loginUserApi, registerUserApi, updateUserProfileApi } from "./authService";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
-import { createAsyncThunk } from "@reduxjs/toolkit";
 
 
 
@@ -28,9 +27,14 @@ export const loginUser = (credentials) => async (dispatch) => {
 export const registerUser = (credentials) => async (dispatch) => {
     dispatch(setLoading(true))
     try {
-        const response = await registerUserApi(credentials)
+        const response = await registerUserApi(credentials);
         console.log("RESPONSE 11", response);
-        toast.success("Registration successful! Check your email to verify your account.");
+        if (response?.data?.status === "success") {
+            toast.success("Your account has been registered successfully!");
+            const token = response?.data?.data?.access_token;
+            Cookies.set("access_token", token, { expires: 30 });
+
+        }
         dispatch(setLoading(false))
         return dispatch(setUser(response))
     } catch (error) {
@@ -47,27 +51,6 @@ export const registerUser = (credentials) => async (dispatch) => {
         dispatch(setLoading(false))
     }
 }
-
-// very email
-export const verifyEmail = createAsyncThunk(
-    "auth/verifyEmail",
-    async (token, { rejectWithValue }) => {
-        try {
-            const response = await verifyEmailApi(token);
-            console.log("EMAIL RESPONSE", response);
-
-            const newToken = response?.access_token;
-            if (newToken) {
-                Cookies.set("access_token", newToken, { expires: 30 });
-            }
-            return response;
-        } catch (error) {
-            console.log(error);
-            return rejectWithValue(error.message);
-        }
-    }
-);
-
 
 
 export const updateUserProfile = (formData) => async (dispatch) => {

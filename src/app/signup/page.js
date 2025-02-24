@@ -37,13 +37,12 @@ export default function SignupPage() {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
-
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         console.log("FormData", formData);
         try {
             const response = await dispatch(registerUser(formData));
-            console.log("REGISTRATION RESPONSE", response);
+            router.push('/')
             return response
         } catch (error) {
             toast.error(error.message)
@@ -52,7 +51,7 @@ export default function SignupPage() {
         }
     }
     const handleGoogleLogin = async () => {
-        window.location.href = "https://secondary-clarette-alladin-299464c9.koyeb.app/api/auth/google"
+        window.location.href = "https://helpless-lanita-mudassirali-c5d1e914.koyeb.app/api/auth/google"
 
     }
 
