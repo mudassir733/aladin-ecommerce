@@ -1,29 +1,29 @@
 
 import { NextResponse } from "next/server";
+import { NextRequest } from "next/server";
+import jwt from "jsonwebtoken"
 
 
-export function middleware(request) {
-    const token = request.cookies.get("access_token")?.value
+export function middleware(req) {
+    const token = req.cookies.get('access_token')?.value;
 
-
-    const protectedRoute = ['/account/personal-info', '/products']
-    console.log(protectedRoute);
-
-
-    if (protectedRoute.some((route) => request.nextUrl.pathname.startsWith(route))) {
-        if (!token) {
-            const url = new URL('/signup', request.url);
-            url.searchParams.set('redirectTo', request.nextUrl.pathname)
-            return NextResponse.redirect(url);
-
-        }
-
+    if (!token) {
+        return NextResponse.redirect(new URL('/login', req.url));
     }
 
-    return NextResponse.next();
+    try {
+
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+
+        return NextResponse.next();
+    } catch (err) {
+
+        return NextResponse.redirect(new URL('/login', req.url));
+    }
 }
 
 
 export const config = {
-    matcher: ['/account/personal-info', '/products'],
+    matcher: ['/account/:path*'],
 };
