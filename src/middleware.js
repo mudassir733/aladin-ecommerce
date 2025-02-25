@@ -6,7 +6,7 @@ export function middleware(request) {
     const token = request.cookies.get("access_token")?.value
 
 
-    const protectedRoute = ['/account/personal-info', '/', 'products']
+    const protectedRoute = ['/account/personal-info', '/products']
     console.log(protectedRoute);
 
 
