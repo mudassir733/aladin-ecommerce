@@ -12,7 +12,7 @@ export const loginUser = (credentials) => async (dispatch) => {
         const response = await loginUserApi(credentials)
         console.log("RESPONSE", response);
         dispatch(setLoading(false))
-        return dispatch(setUser(response))
+        return dispatch(setUser(response.data))
 
     } catch (error) {
         dispatch(setError(error.response))
@@ -32,7 +32,7 @@ export const registerUser = (credentials) => async (dispatch) => {
         console.log("RESPONSE 11", response);
         toast.success("Registration successful! Check your email to verify your account.");
         dispatch(setLoading(false))
-        return dispatch(setUser(response))
+        return dispatch(setUser(response.data))
     } catch (error) {
         const errorMessage = error.message;
         console.log(errorMessage);
