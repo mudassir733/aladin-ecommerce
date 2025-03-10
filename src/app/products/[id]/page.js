@@ -6,21 +6,33 @@ import ProductGallery from '@/features/products/ProductGallery'
 import StarRating from '@/components/StarRating/StarRating'
 import ProductThumbnails from '@/features/products/ProductThumbnail'
 import PurchaseDetails from '@/features/products/PurchaseDetails'
-import { products } from '@/app/products/data/products'
 import HeaderSecnd from '@/components/Header_secnd/HeaderSecnd'
 import Footer from '@/components/Footer/Footer'
 import ProductCard from '@/features/products/ProductCard'
 import Review from '@/features/review/Review'
 import ProductDetails from '@/features/products/ProductDetails'
 
-export default function ProductPage({ params }) {
+
+// services
+import { getProductById } from '@/services/product.service'
+
+export default async function ProductPage({ params }) {
     const { id } = params;
+    let products
+    try {
+        const response = await getProductById(id)
+        console.log("id product", response);
+        products = response
+    } catch (error) {
+        console.error('Error fetching product:', error)
+        products = null;
+        return new Error(error.message);
 
-    const product = products.find((p) => p.id === parseInt(id));
+    }
 
-    console.log("PRODUCT", product);
+    console.log("PRODUCT", products);
 
-    if (!product) {
+    if (!products) {
         return (
             <div className="min-h-screen bg-gray-50 py-8">
                 <div className="container mx-auto px-4">
@@ -38,7 +50,7 @@ export default function ProductPage({ params }) {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
                         <div className="lg:col-span-1 md:px-0 px-[10px]">
-                            <ProductGallery product={product} />
+                            <ProductGallery product={products} />
                         </div>
 
 
@@ -46,16 +58,16 @@ export default function ProductPage({ params }) {
 
                             <div className="mb-8">
                                 <h1 className="text-sm heading-2 !text-left !leading-8 font-medium line-clamp-2">
-                                    {product.title}
+                                    {products.title}
                                 </h1>
 
-                                <h4 className='text-3 font-bold py-2'>Brand: <span className='!font-normal text-[#0B8BA6]'>{product.brand}</span></h4>
+                                <h4 className='text-3 font-bold py-2'>Brand: <span className='!font-normal text-[#0B8BA6]'>{products.brand}</span></h4>
                                 <div className='flex items-center gap-2 text-[#737373]'> <StarRating rating={4} count={337762} /></div>
                                 <div className="mt-4 flex gap-2">
-                                    <span className="text-2xl font-bold text-red-600 line-through">$139.99</span>
-                                    <span className="text-2xl font-bold text-secondary">$39.99</span>
+                                    {/* <span className="text-2xl font-bold text-red-600 line-through">$139.99</span> */}
+                                    <span className="text-2xl font-bold text-secondary">$-{products.price.toFixed(2)}</span>
                                 </div>
-                                <ProductThumbnails product={product} />
+                                <ProductThumbnails product={products} />
                             </div>
                         </div>
                         <div className='lg:col-span-1 md:px-0 px-[10px]'>
@@ -72,40 +84,40 @@ export default function ProductPage({ params }) {
 
                             <div className="flex-1">
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                                    {products.map((product) => (
-                                        <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300" key={product.id}>
-                                            <div className="relative aspect-square">
-                                                <Image
-                                                    src={product.image}
-                                                    alt={product.title}
-                                                    fill
-                                                    className="object-cover"
-                                                />
-                                            </div>
-                                            <div className="p-4">
-                                                <h3 className="text-sm text-3 font-medium line-clamp-2">
-                                                    {product.title}
-                                                </h3>
-                                                <div className="mt-2 flex items-center">
-                                                    <StarRating rating={product.rating} count={337762} />
-                                                    <span className="ml-2 text-sm text-gray-500">
-                                                        ({product.rating})
-                                                    </span>
-                                                </div>
-                                                <div className="mt-2 text-sm text-3 flex items-center justify-between">
-                                                    ${product.priceRange.min.toFixed(2)} - ${product.priceRange.max.toFixed(2)}
 
-                                                </div>
+                                    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300" key={products.id}>
+                                        <div className="relative aspect-square">
+                                            <Image
+                                                src={products.productImage}
+                                                alt={products.title}
+                                                fill
+                                                className="object-cover"
+                                            />
+                                        </div>
+                                        <div className="p-4">
+                                            <h3 className="text-sm text-3 font-medium line-clamp-2">
+                                                {products.title}
+                                            </h3>
+                                            <div className="mt-2 flex items-center">
+                                                <StarRating rating={products.rating} count={337762} />
+                                                <span className="ml-2 text-sm text-gray-500">
+                                                    ({products.rating})
+                                                </span>
+                                            </div>
+                                            <div className="mt-2 text-sm text-3 flex items-center justify-between">
+                                                ${products.price}
+
                                             </div>
                                         </div>
-                                    ))}
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <ProductDetails />
+                <ProductDetails products={products} />
                 <Review />
             </div>
             <Footer />

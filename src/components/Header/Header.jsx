@@ -3,10 +3,22 @@
 import HeaderClient from './HeaderClient'
 
 
+// service
+import { getAllCategories } from '@/services/product.service'
 
-const categories = ['All Categories', 'Electronics', 'Clothing', 'Books']
+export default async function Header() {
+    let categories
+    try {
+        const response = await getAllCategories()
+        console.log(response);
 
-export default function Header() {
+        categories = response
+    } catch (error) {
+        console.error('Error fetching categories:', error)
+        categories = []
+        return new Error(error.message)
+
+    }
 
     return (
         <header className="bg-primary text-white">

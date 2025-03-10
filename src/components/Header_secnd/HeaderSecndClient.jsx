@@ -98,16 +98,16 @@ const HeaderSecndClient = ({ categories, name }) => {
                                         {categories.map((cat, index) => (
                                             <li
                                                 key={index}
-                                                className={`px-4 py-1 cursor-pointer hover:text-white hover:bg-primaryMedium transition-all duration-200  ${cat === category ? 'bg-primaryMedium text-white' : 'text-secondary'
+                                                className={`px-4 py-1 cursor-pointer hover:text-white hover:bg-primaryMedium transition-all duration-200  ${cat.name === category ? 'bg-primaryMedium text-white' : 'text-secondary'
                                                     }`}
                                                 onClick={() => {
-                                                    setCategory(cat)
+                                                    setCategory(cat.name)
                                                     setIsDropdownOpen(false)
                                                 }}
                                                 role="option"
-                                                aria-selected={cat === category}
+                                                aria-selected={cat.name === category}
                                             >
-                                                {cat}
+                                                {cat.name}
                                             </li>
                                         ))}
                                     </ul>

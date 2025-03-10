@@ -7,7 +7,8 @@ import { redirect } from "next/navigation";
 import Cookies from "js-cookie";
 
 
-const categories = ['All Categories', 'Electronics', 'Clothing', 'Books']
+// service
+import { getAllCategories } from '@/services/product.service'
 
 export default async function HeaderSecnd() {
     const cookieStore = await cookies();
@@ -34,6 +35,22 @@ export default async function HeaderSecnd() {
             Cookies.remove("access_token");
             redirect('/login')
         }
+    }
+
+
+
+    // get all categories
+    let categories
+    try {
+        const response = await getAllCategories()
+        console.log(response);
+
+        categories = response
+    } catch (error) {
+        console.error('Error fetching categories:', error)
+        categories = []
+        return new Error(error.message)
+
     }
     return (
         <>

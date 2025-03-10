@@ -4,7 +4,7 @@ import Image from 'next/image'
 export default function ProductThumbnail({ product }) {
     return (
         <div className="grid grid-cols-2 gap-4 mt-6 font-roboto">
-            {product.productThumb.map((thumbnail, index) => (
+            {product.productThumbnails.map((thumbnail, index) => (
                 <div
                     key={index}
                     className="relative aspect-square rounded-lg overflow-hidden border border-gray-200 flex flex-col justify-between"

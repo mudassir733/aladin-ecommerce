@@ -27,15 +27,14 @@ const images = [
 ]
 
 export default function ProductGallery({ product }) {
-    const [selectedImage, setSelectedImage] = useState(product.thumbnails[0])
-    console.log("Product", product.thumbnails);
+    const [selectedImage, setSelectedImage] = useState(product.productThumbnails[0])
 
 
     return (
         <div className="flex flex-col-reverse md:flex-row gap-4">
             {/* Thumbnails */}
             <div className="flex md:flex-col gap-2 overflow-x-auto md:overflow-x-visible">
-                {product.thumbnails.map((thumbnail, index) => (
+                {product.productThumbnails.map((thumbnail, index) => (
                     <button
                         key={index}
                         onClick={() => setSelectedImage(thumbnail)}

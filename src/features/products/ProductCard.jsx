@@ -8,7 +8,7 @@ export default function ProductCard({ product }) {
         <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
             <div className="relative aspect-square">
                 <Image
-                    src={product.image}
+                    src={product.productImage}
                     alt={product.title}
                     fill
                     className="object-cover"
@@ -25,7 +25,7 @@ export default function ProductCard({ product }) {
                     </span>
                 </div>
                 <div className="mt-2 text-sm text-3 flex items-center justify-between">
-                    ${product.priceRange.min.toFixed(2)} - ${product.priceRange.max.toFixed(2)}
+                    ${product.price}
 
                     <Link href={`/products/${product.id}`}>
                         <button className='bg-primaryMedium px-4 py-2 text-white rounded-md'>
